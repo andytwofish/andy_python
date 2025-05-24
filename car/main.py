@@ -5,9 +5,7 @@ import pygame
 
 class game:
     def __init__(self):
-        pygame.init()
-        pygame.display.set_caption("移動方塊") 
-        self.screen = pygame.display.set_mode((600, 800))   
+        pass
         
     def start(self):
         clock = pygame.time.Clock()
@@ -26,15 +24,17 @@ class game:
                     elif event.key == pygame.K_SPACE:
                         print("Space Key")
                     
-            self.screen.fill((255, 255, 255))  
+            screen.fill((255, 255, 255))  
             
             self.mainLoop()
             
             pygame.display.flip()       # 更新畫面
-            clock.tick(20)  
+            clock.tick(30)  
 
     def mainLoop(self):
-        pygame.draw.rect(self.screen, (0, 0, 255), (100, 100, 150, 80))
+        pygame.draw.rect(screen, (0, 0, 255), (100, 100, 150, 80))
 
-
+pygame.init()
+pygame.display.set_caption("移動方塊") 
+screen = pygame.display.set_mode((600, 800))  
 game().start()
