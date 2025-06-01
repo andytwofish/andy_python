@@ -6,6 +6,11 @@ import os
 folder_path = "D:\\Andy\\andy_python"  
 files = os.listdir(folder_path)  
 
-file_list = [f for f in files if os.path.isfile(os.path.join(folder_path, f))]
+for f in files:
+    print(os.path.join(folder_path, f))
+    
+print("--------------------")
+
+file_list = [f for f in files if not os.path.isfile(os.path.join(folder_path, f))]
 print(file_list)
 
