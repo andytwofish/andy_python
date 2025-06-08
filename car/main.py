@@ -8,9 +8,8 @@ from draw_tool import gameContext, DrawTool
 
 class Game:
     def __init__(self):
-        self.x = 100
-        self.y = 100
-        self.myCar = MyCar(300, 300, 50, 50, 30)
+        self.myCar = MyCar( 50, 50 )
+        self.myCar.update_pose( 20, 20, 135 )
         
     def start(self) -> None : #開始執行
         clock = pygame.time.Clock()
@@ -24,10 +23,9 @@ class Game:
                     return
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
-                        self.x-=1
                         print( "Left Key")
                     elif event.key == pygame.K_RIGHT:
-                        self.x+=1
+
                         print( "Right Key")
                     elif event.key == pygame.K_SPACE:
                         print("Space Key")
@@ -41,7 +39,7 @@ class Game:
 
     def mainLoop(self):
         #距形
-        pygame.draw.rect(gameContext.screen, (0, 0, 255), (self.x, self.y, 150, 80))
+        pygame.draw.rect(gameContext.screen, (0, 0, 255), (50, 50, 150, 80))
         #直線
         pygame.draw.line(gameContext.screen, (0, 255, 0), (300, 100), (300, 500), 5)
         pygame.draw.line(gameContext.screen, (0, 255, 0), (100, 300), (500, 300), 5)
@@ -51,8 +49,8 @@ class Game:
         self.myCar.draw()
         
 class MyCar(Class2D):
-    def __init__(self, x:int=0, y:int=0, width:int=10, height:int=10, rotation:int=0 ):
-        super().__init__(x, y, width, height, rotation)
+    def __init__(self, width:int=10, height:int=10 ):
+        super().__init__( width, height )
         self.img = pygame.transform.scale(pygame.image.load("car/images/transport.png") , (self.width,self.height))
         
     def draw(self):
