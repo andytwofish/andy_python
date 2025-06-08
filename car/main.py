@@ -3,13 +3,15 @@
 # pip install pygame
 import pygame
 import math
-from class2D import Class2D
+from class2D import Class2D, Image2D
 from draw_tool import gameContext, DrawTool
 
 class Game:
     def __init__(self):
-        self.myCar = MyCar( 50, 50 )
+        self.myCar = MyCar("car/images/transport.png", 50, 50 )
         self.myCar.update_pose( 20, 20, 135 )
+        self.myStone = MyStone( 100, 200 )
+        self.myStone.update_pose( 100, 200, 0 )
         
     def start(self) -> None : #開始執行
         clock = pygame.time.Clock()
@@ -38,8 +40,6 @@ class Game:
             clock.tick(15)  
 
     def mainLoop(self):
-        #距形
-        pygame.draw.rect(gameContext.screen, (0, 0, 255), (50, 50, 150, 80))
         #直線
         pygame.draw.line(gameContext.screen, (0, 255, 0), (300, 100), (300, 500), 5)
         pygame.draw.line(gameContext.screen, (0, 255, 0), (100, 300), (500, 300), 5)
@@ -47,14 +47,20 @@ class Game:
         #車子
         self.myCar.forward(1)
         self.myCar.draw()
-        
-class MyCar(Class2D):
+        if ( self.myCar.colliderect(self.myStone) ):
+            print("碰撞了") 
+        else:
+            print("----------")
+        self.myStone.draw()
+
+class MyStone(Class2D):
     def __init__(self, width:int=10, height:int=10 ):
         super().__init__( width, height )
-        self.img = pygame.transform.scale(pygame.image.load("car/images/transport.png") , (self.width,self.height))
+
+class MyCar(Image2D):
+    def __init__(self, img_file_name:str, width:int=10, height:int=10 ):
+        super().__init__( img_file_name, width, height )
         
-    def draw(self):
-        DrawTool.drawImg( self.img, self.x, self.y, self.rotation )
 
 
 gameContext.create( 800, 600, "測試視窗" )
