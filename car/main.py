@@ -9,9 +9,9 @@ from draw_tool import gameContext, DrawTool
 class Game:
     def __init__(self):
         self.myCar = MyCar("car/images/transport.png", 50, 50 )
-        self.myCar.update_pose( 20, 20, 135 )
-        self.myStone = MyStone( 100, 200 )
-        self.myStone.update_pose( 100, 200, 0 )
+        self.myCar.update_pose( 100, 300, 90 )
+        self.myStone = MyStone( 50, 100 )
+        self.myStone.update_pose( 700, 300, -90 )
         
     def start(self) -> None : #開始執行
         clock = pygame.time.Clock()
@@ -51,6 +51,7 @@ class Game:
             print("碰撞了") 
         else:
             print("----------")
+        self.myStone.forward(1)
         self.myStone.draw()
 
 class MyStone(Class2D):
