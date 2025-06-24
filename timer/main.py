@@ -38,20 +38,29 @@ class Game:
             clock.tick(15)  
 
     def mainLoop(self):
-        font = pygame.font.SysFont("Arial", 36)
+        font = pygame.font.SysFont("Microsoft JhengHei", 25)
         #直線
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (10, 300), (70, 300), 5)
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (70, 300), (70, 400), 5)
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (70, 400), (10, 400), 5)
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (10, 400), (10, 300), 5)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (10, 200), (10+60, 200), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (10+60, 200), (10+60, 200+100), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (10+60, 200+100), (10, 200+100), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (10, 200+100), (10, 200), 2)
         text_surface = font.render("Start", True, (0, 0, 0)) 
-        gameContext.screen.blit(text_surface, (10, 300))  
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (300, 40), (380, 40), 5)
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (380, 40), (380, 80), 5)
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (380, 80), (300, 80), 5)
-        pygame.draw.line(gameContext.screen, (0, 0, 0), (300, 80), (300, 40), 5)
+        gameContext.screen.blit(text_surface, (10+5, 200))  
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (300, 40), (300+80, 40), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (300+80, 40), (300+80, 40+40), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (300+80, 40+40), (300, 40+40), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (300, 40+40), (300, 40), 2)
         text_surface = font.render("Time", True, (0, 0, 0)) 
-        gameContext.screen.blit(text_surface, (300, 40))  
+        gameContext.screen.blit(text_surface, (300+5, 40))  
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (100, 100), (100+400, 100), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (100+400, 100), (100+400, 100+400), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (100+400, 100+400), (100, 100+400), 2)
+        pygame.draw.line(gameContext.screen, (0, 0, 0), (100, 100+400), (100, 100), 2)
+        text_surface = font.render("Time", True, (0, 0, 0)) 
+        gameContext.screen.blit(text_surface, (300+5, 40))  
+        
+        text_surface = font.render("已累積時間", True, (0, 0, 0)) 
+        gameContext.screen.blit(text_surface, (140, 40))  
        
 
 
