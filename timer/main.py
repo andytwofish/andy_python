@@ -18,6 +18,8 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = pygame.mouse.get_pos()
+                    self.timeList1.mouseClick(x,y)
+                    self.timeList2.mouseClick(x,y)
                     print(f"{x}, {y}")
                 if event.type == pygame.QUIT:
                     print("quit")
