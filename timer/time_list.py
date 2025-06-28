@@ -29,9 +29,9 @@ class TimeList:
     def mouseClick(self,x:int,y:int):
         if ( x>=self.left+TimeList.START_X and x<=self.left+TimeList.START_X+60 and y>=self.top+ TimeList.START_Y and y<=self.top+ TimeList.START_Y+100 ):
             if(self.StartState == TimeList.START_STATE):
-                self.StartState = TimeList.STOP_STATE
                 self.oneTime = self.stopTime-self.startTime
                 self.allTime = self.allTime + self.oneTime 
+                self.StartState = TimeList.STOP_STATE
                 print (self.allTime)
             else:
                 self.StartState = TimeList.START_STATE
