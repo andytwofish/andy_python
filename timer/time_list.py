@@ -3,6 +3,7 @@ import pygame
 import datetime
 import time
 from datetime import timedelta
+from agoTime import AgoTime
 from draw_tool import gameContext
 
 class TimeList:
@@ -19,12 +20,14 @@ class TimeList:
     COUNT_X = 140
     COUNT_Y = 120
     def __init__(self,left,top):
+        self.agoTime = []
         self.left = left
         self.top = top
         self.StartState = TimeList.STOP_STATE
         self.startTime = 0 
         self.stopTime = 0 
         self.oneTime = 0 
+        self.allTimeIds = 0
         self.allTime = timedelta(days=0, hours=0, minutes=0, seconds=0)
     def mouseClick(self,x:int,y:int):
         if ( x>=self.left+TimeList.START_X and x<=self.left+TimeList.START_X+60 and y>=self.top+ TimeList.START_Y and y<=self.top+ TimeList.START_Y+100 ):
@@ -33,12 +36,25 @@ class TimeList:
                 self.allTime = self.allTime + self.oneTime 
                 self.StartState = TimeList.STOP_STATE
                 print (self.allTime)
+                new_value = AgoTime(
+                    self.left + self.BOX_X + 20,
+                    self.top + self.BOX_Y + self.allTimeIds * 30,
+                    self.startTime,
+                    self.stopTime
+                )
+                self.agoTime.append(new_value)
+                self.allTimeIds+= 1
             else:
                 self.StartState = TimeList.START_STATE
 
                 self.startTime = datetime.datetime.now()
+                
+                
     def mainLoop(self):
         #直線s
+        for i in range(len(self.agoTime)):
+            self.agoTime[i].draw()
+        
         font = pygame.font.SysFont("Microsoft JhengHei", 25)
         if (self.StartState == TimeList.START_STATE):
             self.stopTime = datetime.datetime.now()
